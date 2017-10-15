@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+
+    <!-- import vue library    -->
+    <script src="/javascripts/vue.js"></script>
+    <!-- import Element UI library -->
+    <script src="/javascripts/index.js"></script>
+
+    <div id='Wrapper'>
+      <div id='App'>
+        <h3>Welcome to login screen test</h3>
+        <el-button type="success" @click="checkUser">Login</el-button>
+        <el-button type="danger">register ( will be developed later )</el-button>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var oApp = new Vue({
+        el: '#App',
+        methods: {
+          checkUser: function(){
+            location.href = '/user';
+          }
+        }
+      });
+    </script>
+  </body>
+
+</html>

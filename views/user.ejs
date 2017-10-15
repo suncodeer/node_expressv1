@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/index.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+
+    <!-- import vue library    -->
+    <script src="/javascripts/vue.js"></script>
+    <!-- import Element UI library -->
+    <script src="/javascripts/index.js"></script>
+    <!-- import axios class library -->
+    <script src="/javascripts/axios.js"></script>
+
+    <div id='Wrapper'>
+
+      <h1><%= title %></h1>
+      <!-- <p>This is a test page for login feature</p> -->
+      <div id='App'>
+        <el-row>
+          <el-col :span="24">
+            <el-form ref='user_profile' :model = 'user_profile' label-width="150px">
+              <h3 class="title">Login Modulea</h3>
+              <el-form-item label="User Name">
+                <el-input type=text v-model="user_profile.username" placeholder="please type your username"></el-input>
+              </el-form-item>
+              <el-form-item label="User Password">
+                <el-input type=password v-model="user_profile.userpass" placeholder="please type your password"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="checkUser">Login </el-button>
+                <el-button @click="resetValue">Cancel</el-button>
+              </el-form-item>              
+            </el-form>
+          </el-col>
+        </el-row>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      Vue.prototype.$axios = axios;
+      var oApp = new Vue({
+        el: "#App",
+        data: {
+            user_profile: {
+              username: '',
+              userpass: ''
+            }
+        },
+        methods: {
+          resetValue: function(){
+            this.user_profile.username = '';
+            this.user_profile.userpass = '';
+          },
+          checkUser: function(){
+            // location.href = '/user/check';
+            // need to encapsulate the code
+            var user = {
+              username: this.user_profile.username,
+              userpass: this.user_profile.userpass
+            }
+            // this.$axios.post('/user/check', user
+            // ).then( function(response) {
+            //   if( response.status == 200 ){
+            //     location.href = '/detail/'
+            //   }
+            // }).catch( function(err) {
+            //   console.log(err);
+            // })
+            this.$axios.post('/user/check', user
+            ).then( response => { if ( response.status == 200) { location.href = '/detail/' } }
+            ).catch( function(err) {
+              console.log(err);
+            })
+          }
+        }
+      });
+    </script>
+  </body>
+
+</html>
