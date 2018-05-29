@@ -36,17 +36,25 @@
             </el-form>
           </el-col>
         </el-row>
+
+        <div class="qart">
+          <div id="qrcode" ref="qrcode">
+          </div>
+          <input type="text" id="getval" value="" v-model="inputValue" placeholder="修改这个值改变二维码">
+        </div>
       </div>
     </div>
 
     <script type="text/javascript">
+       
       Vue.prototype.$axios = axios;
       var oApp = new Vue({
         el: "#App",
         data: {
             user_profile: {
               username: '',
-              userpass: ''
+              userpass: '',
+              inputValue: ''
             }
         },
         methods: {
@@ -55,25 +63,26 @@
             this.user_profile.userpass = '';
           },
           checkUser: function(){
+            alert(this.inputValue);
             // location.href = '/user/check';
             // need to encapsulate the code
-            var user = {
-              username: this.user_profile.username,
-              userpass: this.user_profile.userpass
-            }
+            // var user = {
+            //   username: this.user_profile.username,
+            //   userpass: this.user_profile.userpass
+            // }
+            // // this.$axios.post('/user/check', user
+            // // ).then( function(response) {
+            // //   if( response.status == 200 ){
+            // //     location.href = '/detail/'
+            // //   }
+            // // }).catch( function(err) {
+            // //   console.log(err);
+            // // })
             // this.$axios.post('/user/check', user
-            // ).then( function(response) {
-            //   if( response.status == 200 ){
-            //     location.href = '/detail/'
-            //   }
-            // }).catch( function(err) {
+            // ).then( response => { if ( response.status == 200) { location.href = '/detail/' } }
+            // ).catch( function(err) {
             //   console.log(err);
             // })
-            this.$axios.post('/user/check', user
-            ).then( response => { if ( response.status == 200) { location.href = '/detail/' } }
-            ).catch( function(err) {
-              console.log(err);
-            })
           }
         }
       });

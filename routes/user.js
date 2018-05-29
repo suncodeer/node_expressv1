@@ -13,17 +13,19 @@ router.get('/', function(req, res, next) {
 router.post('/check', function(req, res, next) {
 	// in callback function redirect dosen't work
 	// res.redirect('../detail');
-	userModel.checkUserExist(
-		req.body.username,
-		req.body.userpass
-	).then( data => {
-		console.log('debug async method')
-		if (data.username === 'admin') {
-			res.status(200).send('success');
-		} else {
-			res.status(404).send('error');
-		}
-	});
+	console.log('checked message');
+	console.log('checked message');
+	// userModel.checkUserExist(
+	// 	req.body.username,
+	// 	req.body.userpass
+	// ).then( data => {
+	// 	console.log('debug async method')
+	// 	if (data.username === 'admin') {
+	// 		res.status(200).send('success');
+	// 	} else {
+	// 		res.status(404).send('error');
+	// 	}
+	// });
 	//  console.log( 'debug info *********************' + userRecord)
 	//  if( userRecord && typeof( userRecord ) != 'undefined'){
 	//  	console.log('debug sucess' + userRecord);
